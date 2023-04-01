@@ -21,7 +21,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // Refresh Token
   refreshToken RefreshToken[]
+
+  // Tweet - user.tweet
+  tweet      Tweet[]
+  // MediaFiles
+  mediaFiles MediaFile[]
 }
 
 model RefreshToken {
@@ -34,3 +40,43 @@ model RefreshToken {
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id])
 }
+
+model Tweet {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  text String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Author
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.ObjectId
+
+  // Na tweet moze da se odgovori, zatim moze da se odgovori na tweet odgovore, a potom i ovaj tweet moze biti odgovor na drugi tweet
+  replyToId String? @db.ObjectId
+  replyTo   Tweet?  @relation("replies", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Tweet[] @relation("replies")
+
+  // MediaFiles
+  mediaFiles MediaFile[]
+}
+
+model MediaFile {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  url              String
+  providerPublicId String // koristicemo cloudinary, a on ce nam omoguciti jedinstven identifikator. Recimo da u buducnosti zelimo da dodamo fnalnost u kojoj cemo ukloniti sve tvitove, dakle sa tim bismo zeleli i da obrisemo sve media fajlove, a posto cemo imati jedinstven identifikator unutar cloudinary takodje cemo biti u mogucnosti da uklonimo i njih
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // User - media file ce pripadati korisniku s obz na to da ga je korisnik kreirao, zato takodje dodajemo i tu info
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  // jos jedan relationship koji moramo da kreiramo jeste izmedju MediaFiles i Tweets. Dakle media file moze da pripada tvitu:
+  tweetId String? @db.ObjectId
+  tweet   Tweet?  @relation(fields: [tweetId], references: [id])
+}
+
+// ne zaboravi: npx prisma db push
+// svaki x kad menjas nesto ovde

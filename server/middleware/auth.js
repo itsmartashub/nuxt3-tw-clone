@@ -7,7 +7,7 @@ import { getUserById } from '../db/users'
 
 export default defineEventHandler(async (event) => {
 	// prvo moramo da definisemo gde ce se ovaj middleware koristiti. Ako to ne uradimo, ranovace se na SVIM RIKVESTOVIMA, a to svakako ne zelimo. Koristicemo module koji se zove url-pattern pa hajde da ga instaliramo: npm i url-pattern
-	const endpoints = ['/api/auth/user']
+	const endpoints = ['/api/auth/user', '/api/user/tweets']
 
 	const isHandledByThisMiddleware = endpoints.some((endpoint) => {
 		const pattern = new UrlPattern(endpoint)

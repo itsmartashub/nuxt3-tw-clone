@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "_id": "e0fa4a53-6a3f-456e-82e7-bc7d64579361",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -2,
+    "created": "2023-04-01T16:25:26.104Z",
+    "modified": "2023-04-01T16:25:26.104Z",
+    "data": [
+      {
+        "name": "domain",
+        "value": "http://localhost:3000"
+      },
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI3MjRjNTYzNzUxY2I3MGVmNzRjOGYiLCJpYXQiOjE2ODAzNzMxNTAsImV4cCI6MTY4MDM3Mzc1MH0.20jWQTEYjrvwkuoYOD6I8peKk9E59nXIqNbptiC0qDE"
+      }
+    ]
+  }
+]
