@@ -1,0 +1,67 @@
+[
+  {
+    "_id": "a687ac70-f7c2-473f-b9db-6f921b5d1ebe",
+    "colId": "history",
+    "containerId": "",
+    "name": "REGISTER - http://localhost:3000/api/auth/register",
+    "url": "http://localhost:3000/api/auth/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-01T13:15:30.017Z",
+    "modified": "2023-04-01T13:15:30.017Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e450b9f6-a7b8-4864-beba-19874020bf21",
+    "colId": "history",
+    "containerId": "",
+    "name": "LOGIN - http://localhost:3000/api/auth/login",
+    "url": "http://localhost:3000/api/auth/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-01T13:16:54.316Z",
+    "modified": "2023-04-01T13:16:54.316Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"test\",\n  \"password\": \"test\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ea823b74-a37d-411a-a596-4d6e46128e56",
+    "colId": "history",
+    "containerId": "",
+    "name": "REFRESH - http://localhost:3000/api/auth/refresh",
+    "url": "http://localhost:3000/api/auth/refresh",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-01T13:17:38.703Z",
+    "modified": "2023-04-01T13:17:38.703Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9ef0397a-c005-4a08-b91e-ccb7d8d129a8",
+    "colId": "history",
+    "containerId": "",
+    "name": "USER - http://localhost:3000/api/auth/user",
+    "url": "http://localhost:3000/api/auth/user",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-01T13:19:02.478Z",
+    "modified": "2023-04-01T14:11:25.675Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI3MjRjNTYzNzUxY2I3MGVmNzRjOGYiLCJpYXQiOjE2ODAzNTgyNjAsImV4cCI6MTY4MDM1ODg2MH0._PM2ixACFrnZOHMAT1ms6Gj7BdpES02Rn8NjXERUOrk"
+    },
+    "tests": []
+  }
+]
