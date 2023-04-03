@@ -70,10 +70,10 @@
     "containerId": "",
     "name": "TWEETS - /api/user/tweets",
     "url": "{{domain}}/api/user/tweets",
-    "method": "GET",
+    "method": "POST",
     "sortNum": 0,
     "created": "2023-04-01T16:25:17.875Z",
-    "modified": "2023-04-01T18:27:09.848Z",
+    "modified": "2023-04-03T14:38:13.115Z",
     "headers": [],
     "params": [],
     "body": {

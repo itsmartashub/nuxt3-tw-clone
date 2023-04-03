@@ -2,6 +2,7 @@ import formidable from 'formidable'
 import { createTweet } from '../../../db/tweet.js'
 import { createMediaFile } from '../../../db/mediaFiles.js'
 import { tweetTransformer } from '~~/server/transformers/tweet.js'
+import { uploadToCloudinary } from '../../../utils/cloudinary.js'
 
 export default defineEventHandler(async (event) => {
 	// ovde pristupamo bodiju, ali u ovom slucaju ovo nece biti klasican json, vec multi-form forma podataka, a razlog za to je taj sto cemo slati i sliku, a to ne mozemo da uradimo ukoliko koristimo json formu. U Suprotnom bismo morali da da saljemo dva zahteva: jedan za kreiranje tvita, a onda i drugi za attachovanje slike.
@@ -52,10 +53,40 @@ export default defineEventHandler(async (event) => {
 
 	posto files ovako izgleda, tj files je objekat i ima key i vrednost. Dakle moracemo da iterate kroz ovaj objakat sto znaci koristicemo Object.keys */
 	const filePromises = Object.keys(files).map(async (key) => {
+		// console.log(files, key)
+		const file = files[key]
+		const cloudinaryResource = await uploadToCloudinary(file.filepath) // treba da prosledimo sliku
+		console.log(cloudinaryResource)
+		/* 
+		OVO JE RESPONSE:
+			{                                                    
+				asset_id: '7509f92cf2c4a067f56391a581d0247b',
+				public_id: 'txj3iti0higvpet6emhr',
+				version: 1680533073,
+				version_id: 'a97ba5c806fa2414d3cffb5280e5b718',
+				signature: '4bc35c58fb407654473b7e6ffcbd2c5a0129a258',
+				width: 564,
+				height: 564,
+				format: 'jpg',
+				resource_type: 'image',
+				created_at: '2023-04-03T14:44:33Z',
+				tags: [],
+				bytes: 44104,
+				type: 'upload',
+				etag: '3841f9d7ef37b1aae000464857e6b7f8',
+				placeholder: false,
+				url: 'http://res.cloudinary.com/dlaxdfkvm/image/upload/v1680533073/txj3iti0higvpet6emhr.jpg',
+				secure_url: 'https://res.cloudinary.com/dlaxdfkvm/image/upload/v1680533073/txj3iti0higvpet6emhr.jpg',
+				folder: '',
+				original_filename: 'd7dc5cfba472edc30dcdcfc00',
+				api_key: NECU DA TI KAZEM
+			}
+		*/
+
+		// kreiracemo ga u server/db/mediaFiles.js i ogde importovati
 		return createMediaFile({
-			// kreiracemo ga u server/db/mediaFiles.js i ogde importovati
-			url: '',
-			providerPublicId: 'random_id',
+			url: cloudinaryResource.secure_url,
+			providerPublicId: cloudinaryResource.public_id,
 			userId: userId,
 			tweetId: tweet.id,
 		})
@@ -69,8 +100,8 @@ export default defineEventHandler(async (event) => {
 		// userId: userId === undefined, // checkiramo da li je userId undefifined
 		// userId: userId,
 		// tweet: tweet,
-		// tweet: tweetTransformer(tweet),
-		files: files,
+		tweet: tweetTransformer(tweet),
+		// files: files,
 	}
 })
 
