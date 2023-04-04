@@ -6,8 +6,12 @@ import { getUserById } from '../../db/users.js'
 export default defineEventHandler(async (event) => {
 	// https://stackoverflow.com/questions/74756773/how-can-i-get-cookie-value-on-server-in-nuxt3
 
-	const cookies = parseCookies(event) // ovo je iz h3
-	const refreshToken = cookies?.refresh_token
+	// const cookies = parseCookies(event) // ovo je iz h3
+	const refreshToken = getCookie(event, 'refresh_token') // ovo je iz h3
+	// const refreshToken = cookies.refresh_token
+
+	// console.log(cookies)
+	// console.log(refreshToken)
 
 	if (!refreshToken) {
 		return sendError(
@@ -62,3 +66,11 @@ export default defineEventHandler(async (event) => {
 	// 	hello: token, // { "hello": { "userId": "642724c563751cb70ef74c8f", "iat": 1680287543,"exp":1680301943 } }
 	// }
 })
+
+/*
+NE RAZUMEM ZASTO NIGDE NISMO SIGNOVALI TOKENE IZ .ENV
+const runtimeConfig = useRuntimeConfig()
+runtimeConfig.jwtAccessSecret = accessToken
+runtimeConfig.jwtRefreshSecret = refreshToken
+console.log('ACCESS_TOKEN', accessToken)
+console.log('REFRESH_TOKEN', refreshToken) */

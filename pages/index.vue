@@ -13,6 +13,9 @@ Koju cemo da koristimo u composables/useAuth.js
 
 <template>
 	<div>
-		<MainSection title="Home" :loading="loading"> {{ user }} </MainSection>
+		<MainSection title="Home" :loading="loading">
+			<!-- {{ user }} -->
+			<TweetForm :user="user" />
+		</MainSection>
 	</div>
 </template>

@@ -98,12 +98,12 @@ export default () => {
 		// decodujemo access token koji je sacuvan u memoriji
 		const authToken = useAuthToken()
 
-		console.log(authToken.value)
+		// console.log(authToken.value)
 
 		if (!authToken.value) return
 
 		const jwtDecoded = jwt_decode(authToken.value)
-		console.log(jwtDecoded)
+		// console.log(jwtDecoded)
 
 		const newRefreshTime = jwtDecoded.exp - 60000
 

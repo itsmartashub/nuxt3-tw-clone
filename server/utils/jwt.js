@@ -28,6 +28,8 @@ Idemo prvo u schema.prisma da kreiramo novi model RefreshToken i relation sa Use
 export const decodeRefreshToken = (token) => {
 	const runtimeConfig = useRuntimeConfig()
 
+	console.log(token)
+
 	try {
 		return jwt.verify(token, runtimeConfig.jwtRefreshSecret)
 	} catch (error) {
@@ -37,6 +39,7 @@ export const decodeRefreshToken = (token) => {
 
 export const decodeAccessToken = (token) => {
 	const runtimeConfig = useRuntimeConfig()
+	console.log(token)
 
 	try {
 		return jwt.verify(token, runtimeConfig.jwtAccessSecret)
@@ -50,8 +53,8 @@ export const generateTokens = (user) => {
 	const refreshToken = generateRefreshToken(user)
 
 	return {
-		accessToken,
-		refreshToken,
+		accessToken: accessToken,
+		refreshToken: refreshToken,
 	}
 }
 
