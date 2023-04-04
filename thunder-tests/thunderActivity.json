@@ -73,7 +73,7 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-04-01T16:25:17.875Z",
-    "modified": "2023-04-03T14:38:13.115Z",
+    "modified": "2023-04-04T19:13:32.547Z",
     "headers": [],
     "params": [],
     "body": {
@@ -82,13 +82,45 @@
       "form": [
         {
           "name": "text",
-          "value": "hello world"
+          "value": "jebeni reply"
+        },
+        {
+          "name": "replyTo",
+          "value": "642c267c26f58a883416f6af"
         }
       ],
       "files": [
         {
-          "name": "image",
-          "value": "..\\1680188939177.jpeg"
+          "name": "",
+          "value": "..\\..\\..\\Downloads\\128x128 square.jpeg"
+        }
+      ]
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "3a01b23a-6007-46eb-9429-4a1151a93d6a",
+    "colId": "history",
+    "containerId": "",
+    "name": "TWEETS - /api/tweets",
+    "url": "{{domain}}/api/tweets",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-04T18:00:18.852Z",
+    "modified": "2023-04-04T19:14:29.772Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "replyTo",
+          "value": "642c267c26f58a883416f6af"
         }
       ]
     },

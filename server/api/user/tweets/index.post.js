@@ -31,6 +31,11 @@ export default defineEventHandler(async (event) => {
 		authorId: userId,
 		text: fields.text,
 	}
+
+	const replyTo = fields.replyTo
+	if (replyTo && replyTo !== 'null') tweetData.replyToId = replyTo
+	// i sad cemo unutar naseg field za /api/user/tweets da unesemo replyTo i vrednost kao form fields (multipart) cisto zarad testa.
+
 	const tweet = await createTweet(tweetData)
 	// idemo unutar db i kreiramo novi fajl tweet.js, kojim kreiramo prismom tweet u nasoj bazi. To radimo u createTweet() f-ju koju ovde importujemo
 

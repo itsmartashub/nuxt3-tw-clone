@@ -6,7 +6,8 @@ const generateAccessToken = (user) => {
 
 	// rvi argument za jwt.sign() ce biti ono sto ce ovaj jwt da zadrzi, u nasem slucaju je to userId, drugi parametar je nas secret, tj runtimeConfig .jwtAccessSecret, a za treci argument pisemo kada istice ovaj token
 	return jwt.sign({ userId: user.id }, runtimeConfig.jwtAccessSecret, {
-		expiresIn: '10m', // access token cemo da metnemo da istice za 10 minuta, a refresh cemo da stavimo da bude aktivan bar 4 sata
+		// expiresIn: '10m', // access token cemo da metnemo da istice za 10 minuta, a refresh cemo da stavimo da bude aktivan bar 4 sata
+		expiresIn: '1h',
 	})
 }
 
@@ -28,7 +29,7 @@ Idemo prvo u schema.prisma da kreiramo novi model RefreshToken i relation sa Use
 export const decodeRefreshToken = (token) => {
 	const runtimeConfig = useRuntimeConfig()
 
-	console.log(token)
+	// console.log(token)
 
 	try {
 		return jwt.verify(token, runtimeConfig.jwtRefreshSecret)
