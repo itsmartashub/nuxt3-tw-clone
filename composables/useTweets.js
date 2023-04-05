@@ -15,7 +15,25 @@ export default () => {
 		})
 	}
 
+	const getHomeTweets = () => {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const response = await useFetchApi('/api/tweets', {
+					method: 'GET',
+				}) // useFetchApi je composables koji smo kreirali
+
+				console.log(response)
+
+				// resolve(true) // ovo je da bismo izbegli infinite load, zato moramo resolve na kraju uvek
+				resolve(response)
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
+
 	return {
 		postTweet,
+		getHomeTweets,
 	}
 }

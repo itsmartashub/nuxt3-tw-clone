@@ -84,7 +84,7 @@ export default () => {
 			try {
 				/* let { data } = await useFetchApi('/api/auth/refresh')
 				data = toRaw(data.value) */
-				const data = await useFetchApi('/api/auth/refresh') // composables/useFetchApi.js. Ovom f-jom modifikujemo header iz rikvesta i attachujemo mu Bearer token
+				const data = await useFetchApi('/api/auth/user') // composables/useFetchApi.js. Ovom f-jom modifikujemo header iz rikvesta i attachujemo mu Bearer token
 				setUser(data.user)
 
 				resolve(true)
@@ -136,6 +136,7 @@ export default () => {
 
 				resolve(true)
 			} catch (error) {
+				console.log(error)
 				reject(error)
 			} finally {
 				setIsAuthLoading(false)

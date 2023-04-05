@@ -40,7 +40,7 @@ export const decodeRefreshToken = (token) => {
 
 export const decodeAccessToken = (token) => {
 	const runtimeConfig = useRuntimeConfig()
-	console.log(token)
+	// console.log(token)
 
 	try {
 		return jwt.verify(token, runtimeConfig.jwtAccessSecret)
