@@ -14,7 +14,11 @@
       },
       {
         "name": "token",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI3MjRjNTYzNzUxY2I3MGVmNzRjOGYiLCJpYXQiOjE2ODA2MzY0NjksImV4cCI6MTY4MDY0MDA2OX0.PNVzYMJZPMCAm3KbArUKvEoy3-LfstMlCfxajOgHsN0"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI3MjRjNTYzNzUxY2I3MGVmNzRjOGYiLCJpYXQiOjE2ODA3MjU5ODYsImV4cCI6MTY4MDcyOTU4Nn0.FVJqyXIvPBN29-5UYt0yJehMQSdyW0iI3i3yNsGUQWk"
+      },
+      {
+        "name": "tweet_id",
+        "value": "642c267c26f58a883416f6af"
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { getTweet } from '~~/server/db/tweet.js'
+import { getTweets } from '~~/server/db/tweet.js'
 import { tweetTransformer } from '~~/server/transformers/tweet'
 
 export default defineEventHandler(async (event) => {
@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
 
 	zelimo da includujemo da nam se jos vrati iz baze i author, posto ovde imamo samo authorId, i zelimo mediaFiles
 	*/
-	const tweets = await getTweet({
+	const tweets = await getTweets({
 		// ono sto hocemo da includujemo putem prisme, a iz mongodb-a
 		include: {
 			author: true,
