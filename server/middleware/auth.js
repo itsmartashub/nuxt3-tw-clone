@@ -6,8 +6,10 @@ import { sendError } from 'h3'
 import { getUserById } from '../db/users'
 
 export default defineEventHandler(async (event) => {
-	// prvo moramo da definisemo gde ce se ovaj middleware koristiti. Ako to ne uradimo, ranovace se na SVIM RIKVESTOVIMA, a to svakako ne zelimo. Koristicemo module koji se zove url-pattern pa hajde da ga instaliramo: npm i url-pattern
-	const endpoints = ['/api/auth/user', '/api/user/tweets', '/api/tweets']
+	/*  prvo moramo da definisemo gde ce se ovaj middleware koristiti. Ako to ne uradimo, ranovace se na SVIM RIKVESTOVIMA, a to svakako ne zelimo. Koristicemo module koji se zove url-pattern pa hajde da ga instaliramo: npm i url-pattern.
+	
+	Elem, za sve sto hocemo da se proverava i tokenom, stavljamo ovde u endpoints, ako ne stavimo mocice se to izvrsiti tj rikvest ka tom endpointu iako nismo logovani */
+	const endpoints = ['/api/auth/user', '/api/user/tweets', '/api/tweets', `/api/tweets/:id`]
 
 	const isHandledByThisMiddleware = endpoints.some((endpoint) => {
 		const pattern = new UrlPattern(endpoint)
