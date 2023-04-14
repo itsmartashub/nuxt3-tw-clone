@@ -1,5 +1,4 @@
 <script setup>
-const route = useRoute()
 const loading = ref(false)
 const tweet = ref(null)
 
@@ -21,9 +20,6 @@ async function getTweet() {
 	console.log('getTweet()')
 	loading.value = true
 	try {
-		console.log(useRoute().params.id)
-		console.log(getTweetIdFromRoute())
-
 		const response = await getTweetById(getTweetIdFromRoute())
 
 		tweet.value = response.tweet
@@ -35,12 +31,11 @@ async function getTweet() {
 	}
 }
 
+// TOFIX: ne mogu dohvatiti ID iz URL, UNDEFINED je uporno. Nzm sto...
 onBeforeMount(() => {
-	getTweetIdFromRoute()
-	useRoute().params.id
-
-	// getTweet()
+	console.log(getTweetIdFromRoute())
 	console.log('onBeforeMount')
+	getTweet()
 })
 </script>
 
