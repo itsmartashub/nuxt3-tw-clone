@@ -20,17 +20,18 @@ const replyToTweetUrl = computed(() => `/status/${props.tweet?.replyTo?.id}`)
 			<!-- author.handle nismo kreirali. Pa zato idemo u server/transformers/user.js  dodajemo handle: `@${user.username}-->
 
 			<span class="ml-3 text-sm font-medium text-gray-400">
-				<NuxtLink to="#">
+				<nuxt-link to="#">
 					{{ author.handle }}
-				</NuxtLink>
+				</nuxt-link>
 				. {{ props.tweet.postedAtHuman }}
 			</span>
 
 			<p v-if="props.tweet.replyTo" class="text-sm">
 				<span class="text-gray-500"> Replying to </span>
-				<NuxtLink :to="replyToTweetUrl" class="text-blue-400">
+
+				<nuxt-link :to="replyToTweetUrl" class="text-blue-400">
 					{{ props.tweet.replyTo.author.handle }}
-				</NuxtLink>
+				</nuxt-link>
 			</p>
 		</div>
 	</div>

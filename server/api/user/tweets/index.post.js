@@ -33,7 +33,10 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const replyTo = fields.replyTo
-	if (replyTo && replyTo !== 'null') tweetData.replyToId = replyTo
+
+	/*  bila sam zaboravila  && replyTo !== 'undefined'  u if-u i imala sam error i nisam mogla da kliknem na tweet kad ispisem tvit, a da se on kreira, 
+	Inconsistent column data: Malformed ObjectID: provided hex string representation must be exactly 12 bytes, instead got: "undefined", length 9 for the field 'replyTo */
+	if (replyTo && replyTo !== 'null' && replyTo !== 'undefined') tweetData.replyToId = replyTo
 	// i sad cemo unutar naseg field za /api/user/tweets da unesemo replyTo i vrednost kao form fields (multipart) cisto zarad testa.
 
 	const tweet = await createTweet(tweetData)
@@ -61,7 +64,7 @@ export default defineEventHandler(async (event) => {
 		// console.log(files, key)
 		const file = files[key]
 		const cloudinaryResource = await uploadToCloudinary(file.filepath) // treba da prosledimo sliku
-		console.log(cloudinaryResource)
+		// console.log(cloudinaryResource)
 		/* 
 		OVO JE RESPONSE:
 			{                                                    

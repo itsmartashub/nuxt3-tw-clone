@@ -3,6 +3,7 @@ export default () => {
 		const form = new FormData() // Content-Type: multipart/form-data;
 
 		form.append('text', formData.text)
+		form.append('replyTo', formData.replyTo)
 
 		formData.mediaFiles.forEach((mediaFile, i) => {
 			form.append(`media_file_[${i}]`, mediaFile)
@@ -32,8 +33,21 @@ export default () => {
 		})
 	}
 
+	const getTweetById = (tweetId) => {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const response = await useFetchApi(`/api/tweets/${tweetId}`)
+
+				resolve(response)
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
+
 	return {
 		postTweet,
 		getHomeTweets,
+		getTweetById,
 	}
 }

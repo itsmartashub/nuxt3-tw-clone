@@ -15,6 +15,11 @@ const props = defineProps({
 		type: Object,
 		required: true,
 	},
+	placeholder: {
+		type: String,
+		required: true,
+		// default: "What's happening ?", // ovo nema potrebe, ovo je u parentu gde se kor ova komponenta vec receno
+	},
 })
 
 // emituje f-ju onSubmit, a vrednost koju salje je text.value. Idemo u parent component gde je tvit forma
@@ -57,7 +62,7 @@ function handleImageChange(e) {
 				<textarea
 					v-model="text"
 					class="w-full p-2 text-lg text-gray-900 placeholder:text-gray-900 bg-transparent border-0 dark:text-white focus:ring-0"
-					placeholder="What's happening?"
+					:placeholder="props.placeholder"
 				></textarea>
 			</div>
 		</div>

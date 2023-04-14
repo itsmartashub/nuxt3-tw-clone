@@ -9,6 +9,13 @@ const props = defineProps({
 })
 
 const isEmptyArray = computed(() => props.tweets.length === 0)
+
+function redirect(tweet) {
+	// console.log(tweet.id)
+	return navigateTo({
+		path: `/status/${tweet.id}`,
+	})
+}
 </script>
 
 <template>
@@ -24,8 +31,10 @@ const isEmptyArray = computed(() => props.tweets.length === 0)
 			class="pb-4 border-b hover:bg-gray-100 cursor-pointer dark:hover:bg-dim-300"
 			:class="[twitterBorderColor, defaultTransition]"
 			:key="tweet.id"
+			@click.native="redirect(tweet)"
 		>
-			<TweetItem :tweet="tweet" />
+			<!-- kada napisemo compact samo i ne prosledimo nista, to je valjda kao da smo napisali defaultno compact koje je false.. valjda... -->
+			<TweetItem :tweet="tweet" compact />
 		</div>
 	</div>
 </template>

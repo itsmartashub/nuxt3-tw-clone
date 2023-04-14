@@ -1,5 +1,5 @@
 <script setup>
-import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/vue/24/solid'
+// import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/vue/24/solid'
 
 const { defaultTransition } = useTailwindConfig()
 
@@ -7,6 +7,10 @@ const props = defineProps({
 	color: {
 		type: String,
 		required: true,
+	},
+	size: {
+		type: Number,
+		default: 5,
 	},
 })
 </script>
@@ -27,7 +31,7 @@ const props = defineProps({
 			<!-- <ChatBubbleOvalLeftEllipsisIcon class="w-5 h-5" /> -->
 
 			<!-- slot - sad mozemo da pristupimo ovim podacima unutar Parenta ove komponente -->
-			<slot name="icon" classes="w-5 h-5" />
+			<slot name="icon" :classes="`w-${props.size} h-${props.size}`" />
 		</div>
 
 		<span :class="`ml-1 group-hover:text-${props.color}-400 ${defaultTransition}`">

@@ -1,4 +1,5 @@
 <script setup>
+const emit = defineEmits(['onSuccess'])
 const loading = ref(false)
 
 const { postTweet } = useTweets()
@@ -7,6 +8,14 @@ const props = defineProps({
 	user: {
 		type: Object,
 		required: true,
+	},
+	placeholder: {
+		type: String,
+		default: "What's happening ?",
+	},
+	replyTo: {
+		type: Object,
+		default: null,
 	},
 })
 
@@ -19,10 +28,14 @@ async function handleFormSubmit(data) {
 		const response = await postTweet({
 			text: data.text,
 			mediaFiles: data.mediaFiles,
+			replyTo: props.replyTo?.id,
+
+			// sad moramo de idemo u ovaj composable composables/useTweets.js gde je ova postTweet fn, i append-ovacemo 'replyTo': form.append('replyTo', formData.replyTo)
 		})
 
+		emit('onSuccess', response.tweet)
 		// console.log(response)
-		// alert(response)
+		// alert(JSON.stringify(response))
 	} catch (error) {
 		console.log(error)
 	} finally {
@@ -38,7 +51,7 @@ async function handleFormSubmit(data) {
 		</div>
 
 		<div v-else>
-			<TweetFormInput :user="props.user" @onSubmit="handleFormSubmit" />
+			<TweetFormInput :placeholder="props.placeholder" :user="props.user" @onSubmit="handleFormSubmit" />
 		</div>
 	</div>
 </template>
